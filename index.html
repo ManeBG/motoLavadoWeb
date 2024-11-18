@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Lavado de motos en Atoyac. Reserva tu cita online y deja tu moto impecable.">
+    <meta name="keywords" content="lavado de motos, lavado a domicilio, servicio de lavado, Atoyac">
+    <title>lavado M</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Motolavado FRAGA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#reservar">Reservar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-primary text-white text-center py-5">
+        <h1>Bienvenido a Motolavado FRAGA</h1>
+        <p>¡Dale un nuevo brillo a tu moto!</p>
+        <a href="#reservar" class="btn btn-warning mt-3">Agendar Cita</a>
+    </header>
+
+    <!-- Servicios -->
+    <section id="servicios" class="container my-5" data-aos="fade-up">
+        <h2 class="text-center">Nuestros Servicios</h2>
+        <p class="text-center text-info">¡Reserva tu cita en línea y obtén un descuento al llegar puntual! 🚀</p>
+        <div class="row">
+            <!-- Lavado Básico con Acabado Brillante -->
+            <div class="col-md-6">
+                <div class="card">
+                    <img src="img/basico.jpg" class="card-img-top" alt="Lavado Básico">
+                    <div class="card-body">
+                        <h5 class="card-title">Lavado Básico con Acabado Brillante</h5>
+                        <p class="card-text">Limpieza rápida para un brillo impecable.</p>
+                        <p class="text-success"><strong>Precio:</strong> $50 <br> <span class="text-primary">¡Reserva en
+                                línea y paga solo $40!</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lavado Detallado con Acabado Brillante -->
+            <div class="col-md-6">
+                <div class="card">
+                    <img src="img/detallado.jpg" class="card-img-top" alt="Lavado Detallado">
+                    <div class="card-body">
+                        <h5 class="card-title">Lavado Detallado con Acabado Brillante</h5>
+                        <p class="card-text">Limpieza profunda para un acabado duradero y detalles en llantas.</p>
+                        <p class="text-success"><strong>Precio:</strong> $80 <br> <span class="text-primary">¡Reserva en
+                                línea y paga solo $70!</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Formulario de Reservación -->
+    <section id="reservar" class="container my-5" data-aos="fade-up">
+        <h2 class="text-center">Reservar Cita</h2>
+        <p class="text-center text-info">¡Reserva tu cita y obtén un descuento al ser puntual! 😎</p>
+        <form id="reservationForm" class="p-4 border rounded">
+            <div class="mb-3">
+                <label for="name" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="name" placeholder="Tu nombre" required>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Teléfono</label>
+                <input type="tel" class="form-control" id="phone" placeholder="Tu número de teléfono" required>
+            </div>
+            <div class="mb-3">
+                <label for="service" class="form-label">Tipo de Servicio</label>
+                <select class="form-select" id="service" required>
+                    <option value="">Seleccionar...</option>
+                    <option value="Lavado Básico con Acabado Brillante">Lavado Básico con Acabado Brillante - $50 ($40
+                        con cita)</option>
+                    <option value="Lavado Detallado con Acabado Brillante">Lavado Detallado con Acabado Brillante - $80
+                        ($70 con cita)</option>
+                </select>
+            </div>
+            <!-- Campo para la Fecha -->
+            <div class="mb-3">
+                <label for="appointmentDate" class="form-label">Fecha de la Cita</label>
+                <input type="date" class="form-control" id="appointmentDate" required>
+            </div>
+            <!-- Campo para la Hora -->
+            <div class="mb-3">
+                <label for="appointmentTime" class="form-label">Hora de la Cita</label>
+                <input type="time" class="form-control" id="appointmentTime" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Reservar</button>
+        </form>
+    </section>
+
+
+
+
+
+
+
+    <!-- Modal de Confirmación -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmModalLabel">Reserva Exitosa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¡Gracias por tu reserva! Te contactaremos pronto para confirmar los detalles.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Sección de Ubicación -->
+    <section id="contacto" class="container my-5" data-aos="fade-up">
+        <h2 class="text-center">Ubicación</h2>
+        <div class="map-responsive">
+            <iframe <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5551816.563614902!2d-107.62456298213976!3d16.08013805741848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cb2553b8d4ad5b%3A0x22b54e752df876eb!2sTaller%20y%20refacciones%20FRAGA!5e0!3m2!1ses-419!2smx!4v1731941227589!5m2!1ses-419!2smx"
+                width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade" width="100%" height="350" style="border:0;"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </section>
+
+
+
+
+
+    <section id="testimonios" class="container my-5" data-aos="fade-up">
+        <h2 class="text-center">Opiniones de nuestros clientes</h2>
+        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <!-- Primer Testimonio (activo) -->
+                <div class="carousel-item active">
+                    <div class="testimonial p-4">
+                        <p>"Excelente servicio, mi moto quedó impecable. ¡Recomendado!"</p>
+                        <h5>- Juan Pérez</h5>
+                    </div>
+                </div>
+                <!-- Segundo Testimonio -->
+                <div class="carousel-item">
+                    <div class="testimonial p-4">
+                        <p>"Atención rápida y profesional. Volveré sin duda."</p>
+                        <h5>- Ana Martínez</h5>
+                    </div>
+                </div>
+                <!-- Tercer Testimonio -->
+                <div class="carousel-item">
+                    <div class="testimonial p-4">
+                        <p>"Servicio rápido y de calidad. Muy satisfecho."</p>
+                        <h5>- Carlos Gómez</h5>
+                    </div>
+                </div>
+            </div>
+            <!-- Controles del Carrusel -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
+    </section>
+
+
+
+    <!-- Botón de WhatsApp Flotante -->
+    <a href="https://wa.me/7445350744" class="whatsapp-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 50px;">
+    </a>
+
+
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4">
+        <p>&copy; 2024 Motolavado Atoyac. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Bootstrap y AOS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script src="script.js"></script>
+
+
+
+
+
+
+
+</body>
+
+</html>
