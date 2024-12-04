@@ -17,7 +17,7 @@ document.getElementById('reservationForm').addEventListener('submit', function (
 
     // Generar el mensaje para WhatsApp
     const message = `Hola, soy ${name}. Quisiera reservar el servicio de ${service}. Mi número de teléfono es ${phone}. Llegaré el ${appointmentDate} a las ${appointmentTime}. Si llego puntual, ¿obtendré mi descuento? 😉`;
-    const whatsappUrl = `https://wa.me/5217445350744?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/5217421064808?text=${encodeURIComponent(message)}`;
 
     // Redirigir al usuario a WhatsApp
     window.open(whatsappUrl, '_blank');
