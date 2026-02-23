@@ -2,12 +2,65 @@
    MOTOLAVADO FRAGA — script.js
    ==================================================== */
 
-/* ── 1. Bloquear fechas pasadas ────────────────────── */
+/* ── 1. Fecha mínima = HOY (hora local, no UTC) ──────── */
 (function setMinDate() {
     const dateInput = document.getElementById('appointmentDate');
     if (!dateInput) return;
-    const today = new Date().toISOString().split('T')[0];
-    dateInput.setAttribute('min', today);
+
+    // Usar fecha LOCAL para evitar desfase UTC-6
+    const now = new Date();
+    const yyyy = now.getFullYear();
+    const mm = String(now.getMonth() + 1).padStart(2, '0');
+    const dd = String(now.getDate()).padStart(2, '0');
+    dateInput.setAttribute('min', `${yyyy}-${mm}-${dd}`);
+})();
+
+
+/* ── 1b. Validación de hora si la cita es HOY ───────── */
+function validateTimeIfToday() {
+    const dateInput = document.getElementById('appointmentDate');
+    const timeInput = document.getElementById('appointmentTime');
+    if (!dateInput || !timeInput) return;
+
+    const now = new Date();
+    const yyyy = now.getFullYear();
+    const mm = String(now.getMonth() + 1).padStart(2, '0');
+    const dd = String(now.getDate()).padStart(2, '0');
+    const todayStr = `${yyyy}-${mm}-${dd}`;
+
+    if (dateInput.value !== todayStr) {
+        // No es hoy — limpiar cualquier error previo
+        timeInput.setCustomValidity('');
+        return;
+    }
+
+    if (!timeInput.value) return;  // campo vacío, Bootstrap lo maneja
+
+    // Calcular el mínimo permitido: now + 60 min
+    const minTime = new Date(now.getTime() + 60 * 60 * 1000);
+    const [hh, mi] = timeInput.value.split(':').map(Number);
+    const chosen = new Date();
+    chosen.setHours(hh, mi, 0, 0);
+
+    if (chosen < minTime) {
+        const minH = String(minTime.getHours()).padStart(2, '0');
+        const minM = String(minTime.getMinutes()).padStart(2, '0');
+        timeInput.setCustomValidity(
+            `Para citas de hoy, elige a partir de ${minH}:${minM} (mín. 60 min de anticipación).`
+        );
+    } else {
+        timeInput.setCustomValidity('');
+    }
+}
+
+// Disparar en vivo cuando cambian fecha u hora
+(function initTimeValidation() {
+    const dateInput = document.getElementById('appointmentDate');
+    const timeInput = document.getElementById('appointmentTime');
+    if (!dateInput || !timeInput) return;
+    dateInput.addEventListener('change', validateTimeIfToday);
+    timeInput.addEventListener('change', validateTimeIfToday);
+    timeInput.addEventListener('input', validateTimeIfToday);
 })();
 
 
@@ -83,6 +136,9 @@
     form.addEventListener('submit', function (e) {
         e.preventDefault();
         e.stopPropagation();
+
+        // Ejecutar validación de hora antes de checkValidity
+        validateTimeIfToday();
 
         // Activar validación visual Bootstrap
         form.classList.add('was-validated');
