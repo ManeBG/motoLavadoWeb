@@ -4,36 +4,35 @@
 
 /* ── Design Tokens ────────────────────────────────── */
 :root {
-    /* Brand */
-    --clr-dark: #0f172a;
-    /* Navbar / base oscuro */
-    --clr-dark-mid: #1e1b4b;
-    /* Intermedio para gradients */
-    --clr-magenta: #c8006e;
-    /* Acento magenta del logo */
-    --clr-magenta-soft: #d1007a;
-    /* Versión ligeramente más viva */
-    --clr-yellow: #ffc107;
-    /* Amarillo CTA del logo */
-    --clr-yellow-dark: #e6a800;
-    /* Hover / amarillo oscuro */
+    /* ── Tokens FRAGA ──────────────────────────── */
+    --fraga-dark: #0B0F2A;
+    /* Navbar / base */
+    --fraga-yellow: #FFC107;
+    /* CTA amarillo logo */
+    --fraga-yellow-hover: #e0a800;
+    /* Hover amarillo */
+    --fraga-magenta: #D1007A;
+    /* Acento magenta logo */
+    --fraga-light: #F8F9FA;
+    /* Fondos claros */
 
-    /* Hero */
-    --hero-gradient: linear-gradient(135deg,
-            #0f172a 0%,
-            #1e1b4b 55%,
-            #5a0035 100%);
-
-    /* Sections decor */
-    --title-underline: linear-gradient(90deg, #1e1b4b, var(--clr-magenta));
-
-    /* Trust / UI */
+    /* ── Aliases internos ──────────────────────── */
+    --clr-dark: var(--fraga-dark);
+    --clr-yellow: var(--fraga-yellow);
+    --clr-yellow-dark: var(--fraga-yellow-hover);
+    --clr-magenta: var(--fraga-magenta);
     --clr-blue-ui: #0d6efd;
-    /* Botones secundarios, checks */
-    --clr-price: #198754;
-    /* Verde para precios */
     --clr-text: #212529;
     --clr-muted: #6c757d;
+
+    /* ── Hero: azul oscuro profundo, sin morado ─ */
+    --hero-gradient: linear-gradient(135deg,
+            #0B0F2A 0%,
+            #111827 60%,
+            #1a2340 100%);
+
+    /* ── Línea decorativa títulos ───────────────── */
+    --title-underline: linear-gradient(90deg, var(--fraga-dark), var(--fraga-magenta));
 }
 
 /* ── Globals ─────────────────────────────────────── */
@@ -113,8 +112,8 @@ h2::after {
 
 /* ── Promo Banner (Mantenimiento) ────────────────── */
 .promo-banner {
-    background: linear-gradient(135deg, #eef0fe 0%, #f5f0ff 100%);
-    border: 1px solid #c5b8f0;
+    background: linear-gradient(135deg, #eef2ff 0%, #f5f5ff 100%);
+    border: 1px solid #c7d2fe;
 }
 
 /* ── Service Cards ───────────────────────────────── */
@@ -125,15 +124,15 @@ h2::after {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
 }
 
-/* Premium variant — gold border, elevated shadow */
+/* Premium variant — magenta border para diferenciación */
 .service-card--premium {
-    border: 2px solid var(--clr-yellow-dark);
-    box-shadow: 0 6px 20px rgba(230, 168, 0, 0.22);
+    border: 2px solid var(--fraga-magenta);
+    box-shadow: 0 6px 20px rgba(209, 0, 122, 0.12);
     position: relative;
 }
 
 .service-card--premium:hover {
-    box-shadow: 0 12px 32px rgba(230, 168, 0, 0.34);
+    box-shadow: 0 12px 32px rgba(209, 0, 122, 0.22);
 }
 
 .service-card:hover {
@@ -145,7 +144,8 @@ h2::after {
     position: absolute;
     top: 12px;
     right: 12px;
-    background: linear-gradient(135deg, var(--clr-yellow), var(--clr-yellow-dark));
+    background: var(--fraga-yellow);
+    /* flat — sin degradado */
     color: #1a0a00;
     font-size: 0.72rem;
     font-weight: 700;
@@ -153,7 +153,7 @@ h2::after {
     border-radius: 50px;
     letter-spacing: 0.03em;
     z-index: 2;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .service-card-img {
@@ -167,9 +167,15 @@ h2::after {
     font-size: 0.92rem;
 }
 
-/* Price stays green for clarity */
-.text-price {
-    color: var(--clr-price) !important;
+/* Precios: oscuro fuerte — sin verde Bootstrap */
+.service-price {
+    color: var(--fraga-dark) !important;
+    font-weight: 800;
+}
+
+/* Sobrescribe text-success en los precios de las cards */
+.service-card .text-success.fw-bold {
+    color: var(--fraga-dark) !important;
 }
 
 /* ── Gallery ─────────────────────────────────────── */
@@ -196,8 +202,8 @@ h2::after {
 .gallery-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(200, 0, 110, 0.52);
-    /* magenta overlay */
+    background: rgba(209, 0, 122, 0.52);
+    /* --fraga-magenta overlay */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -235,16 +241,16 @@ h2::after {
     box-shadow: 0 8px 24px rgba(200, 0, 110, 0.12);
 }
 
-/* Icon accent: magenta on hover, blue default */
+/* Icon: magenta por defecto — coherente con branding */
 .trust-icon {
     font-size: 2.2rem;
-    color: var(--clr-blue-ui);
+    color: var(--fraga-magenta);
     line-height: 1;
     transition: color 0.25s;
 }
 
 .trust-card:hover .trust-icon {
-    color: var(--clr-magenta);
+    color: var(--fraga-dark);
 }
 
 /* ── Reservation Form ────────────────────────────── */
