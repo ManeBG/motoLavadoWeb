@@ -1,44 +1,156 @@
-// Validar y mostrar el modal al enviar el formulario
-document.getElementById('reservationForm').addEventListener('submit', function (e) {
-    e.preventDefault();
+/* ====================================================
+   MOTOLAVADO FRAGA — script.js
+   ==================================================== */
 
-    // Obtener los datos del formulario
-    const name = document.getElementById('name').value;
-    const phone = document.getElementById('phone').value;
-    const service = document.getElementById('service').value;
-    const appointmentDate = document.getElementById('appointmentDate').value;
-    const appointmentTime = document.getElementById('appointmentTime').value;
-
-    // Verificar si todos los campos están llenos
-    if (name.trim() === "" || phone.trim() === "" || service === "" || appointmentDate === "" || appointmentTime === "") {
-        alert("Por favor, completa todos los campos.");
-        return;
-    }
-
-    // Generar el mensaje para WhatsApp
-    const message = `Hola, soy ${name}. Quisiera reservar el servicio de ${service}. Mi número de teléfono es ${phone}. Llegaré el ${appointmentDate} a las ${appointmentTime}. Si llego puntual, ¿obtendré mi descuento? 😉`;
-    const whatsappUrl = `https://wa.me/5217421064808?text=${encodeURIComponent(message)}`;
-
-    // Redirigir al usuario a WhatsApp
-    window.open(whatsappUrl, '_blank');
-
-    // Mostrar confirmación y limpiar el formulario
-    alert('¡Reserva enviada! Te contactaremos pronto.');
-    this.reset();
-});
+/* ── 1. Bloquear fechas pasadas ────────────────────── */
+(function setMinDate() {
+    const dateInput = document.getElementById('appointmentDate');
+    if (!dateInput) return;
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.setAttribute('min', today);
+})();
 
 
+/* ── 2. Galería Lightbox ───────────────────────────── */
+(function initGallery() {
+    // Recopilar todas las imágenes del grid de galería
+    const thumbs = document.querySelectorAll('.gallery-thumb');
+    const carouselInner = document.getElementById('galleryCarouselInner');
+    const galleryModalEl = document.getElementById('galleryModal');
 
-// Inicializar el carrusel
-if (document.querySelector('#carouselExample')) {
-    const myCarousel = new bootstrap.Carousel('#carouselExample', {
-        interval: 5000, // Cambia cada 5 segundos
-        pause: 'hover'  // Pausa al pasar el mouse
+    if (!thumbs.length || !carouselInner || !galleryModalEl) return;
+
+    // Construir los slides del carousel dinámicamente
+    const galleryCarouselBS = new bootstrap.Carousel('#galleryCarousel', {
+        interval: false,
+        wrap: true
     });
-}
 
-// Inicializar Google Analytics
-window.dataLayer = window.dataLayer || [];
-function gtag() { dataLayer.push(arguments); }
-gtag('js', new Date());
-gtag('config', 'TU-ID-DE-GA');
+    thumbs.forEach(function (thumb, index) {
+        const imgEl = thumb.querySelector('img');
+        const src = imgEl ? imgEl.src : '';
+        const alt = imgEl ? imgEl.alt : ('Foto galería ' + (index + 1));
+
+        const item = document.createElement('div');
+        item.className = 'carousel-item' + (index === 0 ? ' active' : '');
+        item.innerHTML = `<img src="${src}" class="d-block w-100" alt="${alt}" loading="lazy">`;
+        carouselInner.appendChild(item);
+
+        // Click → abrir modal en el slide correspondiente
+        thumb.addEventListener('click', function () {
+            galleryCarouselBS.to(index);
+            const modal = new bootstrap.Modal(galleryModalEl);
+            modal.show();
+        });
+    });
+})();
+
+
+/* ── 3. Botón "Reservar este servicio" ─────────────── */
+(function initServiceButtons() {
+    const serviceSelect = document.getElementById('service');
+    const reservarSection = document.getElementById('reservar');
+
+    document.querySelectorAll('.book-service-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            const serviceValue = btn.dataset.service;
+
+            // Preseleccionar en el <select>
+            if (serviceSelect) {
+                for (let i = 0; i < serviceSelect.options.length; i++) {
+                    if (serviceSelect.options[i].value === serviceValue) {
+                        serviceSelect.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+
+            // Scroll suave al formulario
+            if (reservarSection) {
+                reservarSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+})();
+
+
+/* ── 4. Formulario: validación Bootstrap + WhatsApp ── */
+(function initForm() {
+    const form = document.getElementById('reservationForm');
+    const successAlert = document.getElementById('successAlert');
+    if (!form) return;
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Activar validación visual Bootstrap
+        form.classList.add('was-validated');
+
+        if (!form.checkValidity()) {
+            // Scroll al primer campo inválido
+            const firstInvalid = form.querySelector(':invalid');
+            if (firstInvalid) {
+                firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                firstInvalid.focus();
+            }
+            return;
+        }
+
+        // Leer valores
+        const name = document.getElementById('name').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const service = document.getElementById('service').value;
+        const appointmentDate = document.getElementById('appointmentDate').value;
+        const appointmentTime = document.getElementById('appointmentTime').value;
+
+        // Formatear fecha legible
+        const [year, month, day] = appointmentDate.split('-');
+        const dateFormatted = `${day}/${month}/${year}`;
+
+        // Mensaje WhatsApp prellenado
+        const message = [
+            `¡Hola! Quisiera reservar una cita:`,
+            `👤 Nombre: ${name}`,
+            `📞 Teléfono: ${phone}`,
+            `🏍️ Servicio: ${service}`,
+            `📅 Fecha: ${dateFormatted}`,
+            `🕐 Hora: ${appointmentTime}`,
+            `\n¿Está disponible ese horario? ¡Gracias! 😊`
+        ].join('\n');
+
+        const whatsappUrl = `https://wa.me/5217421064808?text=${encodeURIComponent(message)}`;
+
+        // Mostrar alerta de éxito inline (sin alert nativo)
+        if (successAlert) {
+            successAlert.classList.remove('d-none');
+            successAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Abrir WhatsApp en nueva pestaña
+        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+
+        // Reset del formulario
+        form.reset();
+        form.classList.remove('was-validated');
+
+        // Ocultar alerta después de 8 segundos
+        if (successAlert) {
+            setTimeout(function () {
+                successAlert.classList.add('d-none');
+            }, 8000);
+        }
+    });
+})();
+
+
+/* ── 5. Inicializar carousel de Testimonios ─────────── */
+(function initTestimonialsCarousel() {
+    const el = document.querySelector('#carouselTestimonios');
+    if (el) {
+        new bootstrap.Carousel(el, {
+            interval: 5000,
+            pause: 'hover'
+        });
+    }
+})();
