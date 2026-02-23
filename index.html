@@ -93,8 +93,9 @@
                     <img src="img/lavadonormal.webp" class="card-img-top service-card-img"
                         alt="Motocicleta recién lavada con acabado brillante — Lavado Básico FRAGA" loading="lazy">
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold">Lavado Básico con Acabado Brillante</h5>
-                        <p class="card-text text-muted small">Limpieza rápida para un brillo impecable.</p>
+                        <h5 class="card-title fw-bold">Lavado Básico</h5>
+                        <p class="card-text text-muted small">Ideal para mantener tu moto limpia y bien presentada en tu
+                            día a día.</p>
 
                         <ul class="list-unstyled mb-3 service-bullets">
                             <li><i class="bi bi-check-circle-fill text-success me-2"></i>Limpieza exterior completa</li>
@@ -111,31 +112,34 @@
                         <p class="small text-muted mb-3"><i class="bi bi-info-circle me-1"></i>Sin cita: por orden de
                             llegada. Con cita: prioridad de atención.</p>
 
-                        <button class="btn btn-primary mt-auto book-service-btn"
-                            data-service="Lavado Básico con Acabado Brillante">
+                        <button class="btn btn-primary mt-auto book-service-btn" data-service="Lavado Básico">
                             <i class="bi bi-calendar-plus me-2"></i>Reservar este servicio
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Lavado Detallado -->
+            <!-- Lavado Premium -->
             <div class="col-md-6">
-                <div class="card h-100 shadow-sm service-card">
+                <div class="card h-100 service-card service-card--premium">
+                    <div class="premium-badge">⭐ Recomendado</div>
                     <img src="img/llantalavada.webp" class="card-img-top service-card-img"
-                        alt="Llanta de moto limpia con detailing profesional — Lavado Detallado FRAGA" loading="lazy">
+                        alt="Detailing profesional de moto — Lavado Premium FRAGA" loading="lazy">
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold">Lavado Detallado con Acabado Brillante</h5>
-                        <p class="card-text text-muted small">Limpieza profunda para un acabado duradero y detalles en
-                            llantas.</p>
+                        <h5 class="card-title fw-bold">Lavado Premium</h5>
+                        <p class="card-text text-muted small">Ideal si quieres que tu moto luzca como recién salida del
+                            taller.</p>
 
                         <ul class="list-unstyled mb-3 service-bullets">
-                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Todo lo del lavado básico</li>
-                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Detallado en rines y zonas
-                                difíciles</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Limpieza profunda en cada
+                                detalle</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Detallado especial en rines y
+                                zonas difíciles</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Tratamiento de plásticos y
+                                acabados</li>
                             <li><i class="bi bi-check-circle-fill text-success me-2"></i>Limpieza ligera de grasa en
-                                zonas clave</li>
-                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Brillo premium y acabado más
+                                áreas clave</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Brillo intenso con acabado más
                                 duradero</li>
                         </ul>
 
@@ -146,8 +150,7 @@
                         <p class="small text-muted mb-3"><i class="bi bi-info-circle me-1"></i>Sin cita: por orden de
                             llegada. Con cita: prioridad de atención.</p>
 
-                        <button class="btn btn-primary mt-auto book-service-btn"
-                            data-service="Lavado Detallado con Acabado Brillante">
+                        <button class="btn btn-primary mt-auto book-service-btn" data-service="Lavado Premium">
                             <i class="bi bi-calendar-plus me-2"></i>Reservar este servicio
                         </button>
                     </div>
@@ -163,7 +166,8 @@
         <div class="promo-banner rounded-4 text-center p-4 p-md-5">
             <h3 class="text-primary fw-bold">¡Trae tu moto al taller y el lavado es GRATIS! 🏍✨</h3>
             <p class="mb-3">Realiza el mantenimiento de tu moto en nuestro taller y recibe un lavado
-                <strong>GRATIS</strong>. Sin costo adicional.</p>
+                <strong>GRATIS</strong>. Sin costo adicional.
+            </p>
             <a href="#contacto" class="btn btn-primary">
                 <i class="bi bi-info-circle me-2"></i>Más Información
             </a>
@@ -294,8 +298,9 @@
                         <div class="trust-icon mb-2">
                             <i class="bi bi-shield-check-fill"></i>
                         </div>
-                        <h6 class="fw-bold mb-1">Garantía de Calidad</h6>
-                        <p class="small text-muted mb-0">Si no quedas satisfecho, repetimos el lavado sin costo.</p>
+                        <h6 class="fw-bold mb-1">Compromiso de Calidad</h6>
+                        <p class="small text-muted mb-0">Revisamos tu moto contigo antes de entregarla. Si hay algún
+                            detalle visible, lo corregimos al momento sin costo.</p>
                     </div>
                 </div>
 
@@ -367,10 +372,8 @@
                 <label for="service" class="form-label fw-semibold">Tipo de Servicio</label>
                 <select class="form-select" id="service" required>
                     <option value="">Seleccionar...</option>
-                    <option value="Lavado Básico con Acabado Brillante">Lavado Básico con Acabado Brillante — $50
-                    </option>
-                    <option value="Lavado Detallado con Acabado Brillante">Lavado Detallado con Acabado Brillante — $80
-                    </option>
+                    <option value="Lavado Básico">Lavado Básico — $50</option>
+                    <option value="Lavado Premium">Lavado Premium — $80</option>
                 </select>
                 <div class="invalid-feedback">Por favor selecciona un servicio.</div>
             </div>
