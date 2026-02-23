@@ -245,27 +245,29 @@ h2::after {
 
 /* Íconos en magenta de marca — tamaño y peso uniforme */
 .trust-icon {
-    font-size: 2.3rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: var(--fraga-magenta);
     line-height: 1;
     transition: color 0.25s;
 }
 
-/* Fondo circular sutil — jerarquía visual sin saturar */
+/* El fondo circular va en el i — con tamaño y color explícitos */
 .trust-icon i {
+    font-size: 2.3rem !important;
+    color: var(--fraga-magenta) !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background: rgba(209, 0, 122, 0.08);
     padding: 14px;
     border-radius: 50%;
-    color: var(--fraga-magenta);
-    /* anula cualquier herencia Bootstrap */
+    line-height: 1;
+    transition: color 0.25s, background 0.25s;
 }
 
-.trust-card:hover .trust-icon,
 .trust-card:hover .trust-icon i {
-    color: var(--fraga-dark);
+    color: var(--fraga-dark) !important;
     background: rgba(11, 15, 42, 0.06);
 }
 
