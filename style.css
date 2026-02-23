@@ -201,7 +201,7 @@ h2 {
     right: 24px;
     z-index: 9999;
     transition: transform 0.3s ease;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,.25));
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, .25));
 }
 
 .whatsapp-float:hover {
@@ -230,4 +230,17 @@ h2 {
     #reservationForm {
         padding: 1.25rem !important;
     }
+}
+
+/* ── Hora Feliz Banner ───────────────────────────── */
+.hora-feliz-banner {
+    background: linear-gradient(135deg, #fff8e6 0%, #fff3cd 100%);
+    border: 1px solid #ffc107;
+    box-shadow: 0 2px 12px rgba(255, 193, 7, 0.18);
+}
+
+.hora-feliz-icon {
+    font-size: 3rem;
+    color: #e6a800;
+    line-height: 1;
 }
