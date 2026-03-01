@@ -175,7 +175,7 @@ function validateTimeIfToday() {
             `\n¿Está disponible ese horario? ¡Gracias! 😊`
         ].join('\n');
 
-        const whatsappUrl = `https://wa.me/5217421064808?text=${encodeURIComponent(message)}`;
+        const whatsappUrl = `https://wa.me/7421350819?text=${encodeURIComponent(message)}`;
 
         // Mostrar alerta de éxito inline (sin alert nativo)
         if (successAlert) {
